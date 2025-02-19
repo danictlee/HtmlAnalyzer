@@ -1,9 +1,3 @@
-EASTER_EGG_URLS 
-
-(I must say that I'm now a huge fan the person who came up with this easter egg. I hope one day I'll be as cool as you!!)
-
-@AUTHOR: DANIEL CHIN TAY LEE - danictlee@gmail.com
-
 **Hey there!**
 
 HtmlAnalyzer is an application developed as part of a technical test for a Software Development Intern role @Axur!
