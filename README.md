@@ -1,7 +1,5 @@
 **Hey there!**
 
-HtmlAnalyzer is an application developed as part of a technical test for a Software Development Intern role @Axur!
-
 The application retrieves HTML content from a given URL, parses the HTML to extract the text located at the deepest nested level, and outputs that text.
 **It also handles error scenarios, by printing "malformedHTML" for HTML structure issues and "URL connection error" if the content cannot be fetched (both messages without quotes)**.
 
