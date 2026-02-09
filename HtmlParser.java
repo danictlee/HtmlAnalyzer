@@ -1,6 +1,8 @@
-import java.util.*;
+import java.util.List;
+import java.util.Stack;
 
 public class HtmlParser {
+
     public String findDeepestText(List<String> lines) throws MalformedHtmlException {
         int currentDepth = 0;
         int maxDepth = -1;
@@ -8,43 +10,42 @@ public class HtmlParser {
         Stack<String> tagStack = new Stack<>();
 
         for (String line : lines) {
-            String trimmedLine = line.trim();
-            if (isTag(trimmedLine)) {
-                if (isClosingTag(trimmedLine)) {
-
-                    String tagName = extractTagName(trimmedLine);
-                    if (tagStack.isEmpty() || !tagStack.peek().equals(tagName)) {
-
-                        throw new MalformedHtmlException();
-                    }
-                    tagStack.pop();
-                    currentDepth--;
-                } else {
-                    String tagName = extractTagName(trimmedLine);
-                    tagStack.push(tagName);
-                    currentDepth++;
+            if (isOpeningTag(line)) {
+                String tagName = extractTagName(line);
+                tagStack.push(tagName);
+                currentDepth++;
+            } else if (isClosingTag(line)) {
+                String tagName = extractTagName(line);
+                if (tagStack.isEmpty() || !tagStack.peek().equals(tagName)) {
+                    throw new MalformedHtmlException();
                 }
+                
+                tagStack.pop();
+                currentDepth--;
             } else {
                 if (currentDepth > maxDepth) {
                     maxDepth = currentDepth;
-                    deepestText = trimmedLine;
+                    deepestText = line;
                 }
             }
         }
         if (!tagStack.isEmpty()) {
             throw new MalformedHtmlException();
         }
+
         return deepestText;
     }
-    private boolean isTag(String line) {
-        return line.startsWith("<") && line.endsWith(">");
+
+    private boolean isOpeningTag(String line) {
+        return line.startsWith("<") && line.endsWith(">") && !line.startsWith("</");
     }
 
     private boolean isClosingTag(String line) {
-        return line.startsWith("</");
+        return line.startsWith("</") && line.endsWith(">");
     }
-    private String extractTagName(String tagLine) {
-        String content = tagLine.substring(1, tagLine.length() - 1);
+
+    private String extractTagName(String line) {
+        String content = line.substring(1, line.length() - 1);
         if (content.startsWith("/")) {
             content = content.substring(1);
         }
