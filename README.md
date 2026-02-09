@@ -2,37 +2,37 @@
 
 # HtmlAnalyzer
 
-Analisador de HTML que encontra o texto no nível mais profundo de aninhamento de uma página web.
+HTML analyzer that finds the text at the deepest nesting level of a web page.
 
-## Como usar
+## Usage
 
-### Compilar
+### Compile
 
 ```bash
 javac *.java
 ```
 
-### Executar
+### Run
 
 ```bash
 java HtmlAnalyzer <URL>
 ```
 
-**Exemplo:**
+**Example:**
 
 ```bash
 java HtmlAnalyzer http://hiring.axreng.com/internship/example1.html
 ```
 
-## Estrutura do Projeto
+## Project Structure
 
-- `HtmlAnalyzer.java` - Classe principal
-- `HtmlFetcher.java` - Busca o conteúdo HTML de uma URL
-- `HtmlParser.java` - Analisa o HTML e encontra o texto mais profundo
-- `MalformedHtmlException.java` - Exceção para HTML malformado
+- `HtmlAnalyzer.java` - Main class
+- `HtmlFetcher.java` - Fetches HTML content from a URL
+- `HtmlParser.java` - Parses HTML and finds the deepest text
+- `MalformedHtmlException.java` - Exception for malformed HTML
 
-## Saídas
+## Output
 
-- **Sucesso:** Imprime o texto encontrado no nível mais profundo
-- **HTML malformado:** `malformed HTML`
-- **Erro de conexão:** `URL connection error`
+- **Success:** Prints the text found at the deepest level
+- **Malformed HTML:** `malformed HTML`
+- **Connection error:** `URL connection error`
